@@ -33,7 +33,7 @@ namespace Banking_Polymorphism
             }
             return accNumbers;
         }
-        private void PopulateAccounts(int[] accNumbers, List<Account> accList)
+        private void PopulateAccounts(int[] accNumbers, List<Transaction> accList)
         {
 
         }
