@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace BankLib
 {
+    public enum AcctType{checking, savings, retirement, loan};
     public abstract class Account
     {
         private int _accNumber;
         private decimal _currentBalance;
         private string _bankName;
+        private AcctType _acctType;
         private List<Transaction> _transactionsList = new List<Transaction>();
 
-        public Account(int accountNumber, decimal currentBalance, string bankName, List<Transaction> transactionsList)
+        public Account(int accountNumber, decimal currentBalance, string bankName,AcctType acctType)
         {
             _accNumber = accountNumber;
             _currentBalance = currentBalance;
             _bankName = bankName;
-            _transactionsList = transactionsList;
+            _acctType = acctType;
         }
 
         public virtual int AccNumber { get => _accNumber; }
@@ -29,8 +31,8 @@ namespace BankLib
         public virtual Transaction Deposit(decimal amount)
         {
             //maybe a better description
-            string description = String.Format("Deposit of {0:c} complete!", amount);
-            Transaction t = new Transaction(amount, AccType.deposit, DateTime.Now, description);
+            string depDescription = String.Format("Your Deposit of {0:c} is complete!", amount);
+            Transaction t = new Transaction(amount, TransType.deposit, DateTime.Now, depDescription);
             _currentBalance += amount;
             return t;
         }
@@ -38,8 +40,8 @@ namespace BankLib
         public virtual Transaction TransferTo(Account toOther, decimal amount)
         {
             //maybe a better description
-            string description = String.Format("Transfer out of {0:c} to {1} complete!", amount, toOther.AccNumber);
-            Transaction t = new Transaction(amount, AccType.transferOut, DateTime.Now, description);
+            string transDescription = String.Format("Your transfer of {0:c} to Acct Num: {1} is complete!", amount, toOther.AccNumber);
+            Transaction t = new Transaction(amount, TransType.transferOut, DateTime.Now, transDescription);
             _currentBalance -= amount;
             toOther.Deposit(amount);
             return t;

@@ -33,9 +33,54 @@ namespace Banking_Polymorphism
             }
             return accNumbers;
         }
+
+        private void DisplayAccts(Account acct)
+        {
+            string[] items =
+            {
+                acct.AccNumber.ToString(),
+                acct.GetType().ToString()
+            };
+            ListViewItem lvi = new ListViewItem(items);
+            //add the row to the listview
+            listView1.Items.Add(lvi);
+            //cause the listview1 to scroll to the bottom
+            //by making the last item visible
+            listView1.EnsureVisible(listView1.Items.Count - 1);
+        }
+
+        private void DisplayTransactions(Transaction acctTrans)
+        {
+            string[] items =
+            {
+                acctTrans.Type.ToString(),
+                acctTrans.Date.ToString(),
+                acctTrans.Description,
+                acctTrans.Amount.ToString()
+            };
+            ListViewItem lvi = new ListViewItem(items);
+            //add the row to the listview
+            listView2.Items.Add(lvi);
+            //cause the listview1 to scroll to the bottom
+            //by making the last item visible
+            listView1.EnsureVisible(listView1.Items.Count - 1);
+        }
+
         private void PopulateAccounts(int[] accNumbers, List<Transaction> accList)
         {
+            string[] banks =
+            {"Republic Savings","AMCORE Bank Carpentersville","Broadway Bank",
+             "First Choice Bank","South Carolina Federal Savings Bank",
+             "Valley Bank Richland Center","Trinity National Bank",
+             "Glasgow Savings Bank","Gunnison Valley Bank","Little Falls Bank"};
 
+            AcctType at;
+            for (int i = 0; i < accNumbers.Length; i++)
+            {
+                Account a[i] = new Account(accNumbers[i],rand.Next(10, 3000),banks[i], (AcctType)rand.Next(0,3));
+            }
         }
+
+
     }
 }

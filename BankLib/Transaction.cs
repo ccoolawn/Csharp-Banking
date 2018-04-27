@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BankLib
 {
-    public enum AccType { deposit, withdrawal, transferIn, transferOut };
+    public enum TransType { deposit, withdrawal, transferIn, transferOut };
     public class Transaction
     {
         private decimal _amount;
-        private AccType _type;
+        private TransType _type;
         private DateTime _date;
         private string _description;
 
-        public Transaction(decimal amount, AccType type, DateTime date, string description)
+        public Transaction(decimal amount, TransType type, DateTime date, string description)
         {
             _amount = amount;
             _type = type;
@@ -23,7 +23,7 @@ namespace BankLib
         }
 
         public decimal Amount { get => _amount; }
-        public AccType Type { get => _type; }
+        public TransType Type { get => _type; }
         public DateTime Date { get => _date; }
         public string Description { get => _description; }
     }
