@@ -39,16 +39,16 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboFromAcct = new System.Windows.Forms.ComboBox();
+            this.cboToAcct = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboTransType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTransAmt = new System.Windows.Forms.TextBox();
+            this.btnSubmitTrans = new System.Windows.Forms.Button();
+            this.txtTransDescript = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -63,6 +63,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -143,21 +144,21 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Withdraw | Deposit | Transfer Funds";
             // 
-            // comboBox1
+            // cboFromAcct
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(964, 170);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 25);
-            this.comboBox1.TabIndex = 5;
+            this.cboFromAcct.FormattingEnabled = true;
+            this.cboFromAcct.Location = new System.Drawing.Point(964, 170);
+            this.cboFromAcct.Name = "cboFromAcct";
+            this.cboFromAcct.Size = new System.Drawing.Size(121, 25);
+            this.cboFromAcct.TabIndex = 5;
             // 
-            // comboBox2
+            // cboToAcct
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(964, 201);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 25);
-            this.comboBox2.TabIndex = 6;
+            this.cboToAcct.FormattingEnabled = true;
+            this.cboToAcct.Location = new System.Drawing.Point(964, 201);
+            this.cboToAcct.Name = "cboToAcct";
+            this.cboToAcct.Size = new System.Drawing.Size(121, 25);
+            this.cboToAcct.TabIndex = 6;
             // 
             // label4
             // 
@@ -192,13 +193,13 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Type:";
             // 
-            // comboBox3
+            // cboTransType
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(964, 138);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 25);
-            this.comboBox3.TabIndex = 9;
+            this.cboTransType.FormattingEnabled = true;
+            this.cboTransType.Location = new System.Drawing.Point(964, 138);
+            this.cboTransType.Name = "cboTransType";
+            this.cboTransType.Size = new System.Drawing.Size(121, 25);
+            this.cboTransType.TabIndex = 9;
             // 
             // label7
             // 
@@ -211,31 +212,31 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Amt:";
             // 
-            // textBox1
+            // txtTransAmt
             // 
-            this.textBox1.Location = new System.Drawing.Point(964, 231);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 12;
+            this.txtTransAmt.Location = new System.Drawing.Point(964, 231);
+            this.txtTransAmt.Name = "txtTransAmt";
+            this.txtTransAmt.Size = new System.Drawing.Size(121, 22);
+            this.txtTransAmt.TabIndex = 12;
             // 
-            // button1
+            // btnSubmitTrans
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(883, 367);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(183, 42);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Submit Transaction";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSubmitTrans.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmitTrans.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSubmitTrans.Location = new System.Drawing.Point(883, 367);
+            this.btnSubmitTrans.Name = "btnSubmitTrans";
+            this.btnSubmitTrans.Size = new System.Drawing.Size(183, 42);
+            this.btnSubmitTrans.TabIndex = 13;
+            this.btnSubmitTrans.Text = "Submit Transaction";
+            this.btnSubmitTrans.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtTransDescript
             // 
-            this.textBox2.Location = new System.Drawing.Point(964, 259);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 83);
-            this.textBox2.TabIndex = 15;
+            this.txtTransDescript.Location = new System.Drawing.Point(964, 259);
+            this.txtTransDescript.Multiline = true;
+            this.txtTransDescript.Name = "txtTransDescript";
+            this.txtTransDescript.Size = new System.Drawing.Size(121, 83);
+            this.txtTransDescript.TabIndex = 15;
             // 
             // label8
             // 
@@ -253,17 +254,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 604);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtTransDescript);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnSubmitTrans);
+            this.Controls.Add(this.txtTransAmt);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cboTransType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboToAcct);
+            this.Controls.Add(this.cboFromAcct);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listView2);
@@ -295,16 +296,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboFromAcct;
+        private System.Windows.Forms.ComboBox cboToAcct;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cboTransType;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTransAmt;
+        private System.Windows.Forms.Button btnSubmitTrans;
+        private System.Windows.Forms.TextBox txtTransDescript;
         private System.Windows.Forms.Label label8;
     }
 }

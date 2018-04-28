@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 
 namespace BankLib
 {
-    public enum AcctType{checking, savings, retirement, loan};
+    
     public abstract class Account
     {
         private int _accNumber;
         private decimal _currentBalance;
         private string _bankName;
-        private AcctType _acctType;
         private List<Transaction> _transactionsList = new List<Transaction>();
 
-        public Account(int accountNumber, decimal currentBalance, string bankName,AcctType acctType)
+        public Account(int accountNumber, decimal currentBalance, string bankName)
         {
             _accNumber = accountNumber;
             _currentBalance = currentBalance;
             _bankName = bankName;
-            _acctType = acctType;
         }
 
         public virtual int AccNumber { get => _accNumber; }
-        public virtual decimal CurrentBalance { get => _currentBalance; }
+        public virtual decimal CurrentBalance { get => _currentBalance;}
         public virtual string BankName { get => _bankName; }
         public virtual Transaction[] TransactionList { get => _transactionsList.ToArray(); }
 
@@ -36,7 +34,9 @@ namespace BankLib
             _currentBalance += amount;
             return t;
         }
+        
         public abstract Transaction Withdrawal(decimal amount);
+        
         public virtual Transaction TransferTo(Account toOther, decimal amount)
         {
             //maybe a better description
