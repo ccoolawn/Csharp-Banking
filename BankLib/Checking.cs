@@ -8,17 +8,17 @@ namespace BankLib
 {
     public class Checking : Account
     {
-        private decimal _minBalance = 25;
+        private decimal _minBalance;
         private decimal _fees;
 
-        public Checking(int accountNumber, decimal currentBalance, string bankName, AcctType acctType, decimal minBalance, decimal fees) : base(
-            accountNumber, currentBalance, bankName, acctType)
+        public Checking(int accountNumber, decimal currentBalance, string bankName, /*AcctType acctType,*/ decimal minBalance, decimal fees) : base(
+            accountNumber, currentBalance, bankName/*, acctType*/)
         {
             _minBalance = minBalance; 
             _fees = fees;
         }
 
-        public override Transaction Withdrawal(decimal amount)
+        public override void Withdraw(decimal amount)
         {
             Transaction t;
             decimal newBalance;
@@ -38,9 +38,8 @@ namespace BankLib
                 string withrawDescription = String.Format("Your Withdrawal of {0:c} is complete!", amount);
                 t = new Transaction(newBalance, TransType.withdrawal, DateTime.Now, withrawDescription);
             }
-
-            return t;
+            //add transaction to _transactionList
+            AddTransaction(t);
         }
-
     }
 }

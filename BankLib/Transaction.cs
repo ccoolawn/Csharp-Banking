@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace BankLib
 {
     public enum TransType { deposit, withdrawal, transferIn, transferOut };
-    public enum AcctType {checking, savings};
     public class Transaction
     {
         private decimal _amount;

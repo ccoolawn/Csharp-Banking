@@ -1,0 +1,7 @@
+QUESTIONS AND COMMENTS:
+
+In Cheking and Savings classes, if you defined values for minBalance and interest, 
+why put them in the constructor?
+This allows those values to be changed. Is that the purpose? And if yes, why define them then?
+
+I'm getting an error for the index, but I couldn't figure out what's wrong 

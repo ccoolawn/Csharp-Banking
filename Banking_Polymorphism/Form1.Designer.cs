@@ -50,6 +50,7 @@
             this.btnSubmitTrans = new System.Windows.Forms.Button();
             this.txtTransDescript = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnDisplayAccts = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -83,7 +84,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(26, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 17);
+            this.label1.Size = new System.Drawing.Size(236, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "List of current Accounts";
             // 
@@ -129,7 +130,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(255, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(185, 17);
+            this.label2.Size = new System.Drawing.Size(277, 23);
             this.label2.TabIndex = 3;
             this.label2.Text = "List of Account Transactions";
             // 
@@ -140,7 +141,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Location = new System.Drawing.Point(869, 99);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(241, 17);
+            this.label3.Size = new System.Drawing.Size(359, 23);
             this.label3.TabIndex = 4;
             this.label3.Text = "Withdraw | Deposit | Transfer Funds";
             // 
@@ -149,7 +150,7 @@
             this.cboFromAcct.FormattingEnabled = true;
             this.cboFromAcct.Location = new System.Drawing.Point(964, 170);
             this.cboFromAcct.Name = "cboFromAcct";
-            this.cboFromAcct.Size = new System.Drawing.Size(121, 25);
+            this.cboFromAcct.Size = new System.Drawing.Size(121, 29);
             this.cboFromAcct.TabIndex = 5;
             // 
             // cboToAcct
@@ -157,7 +158,7 @@
             this.cboToAcct.FormattingEnabled = true;
             this.cboToAcct.Location = new System.Drawing.Point(964, 201);
             this.cboToAcct.Name = "cboToAcct";
-            this.cboToAcct.Size = new System.Drawing.Size(121, 25);
+            this.cboToAcct.Size = new System.Drawing.Size(121, 29);
             this.cboToAcct.TabIndex = 6;
             // 
             // label4
@@ -167,7 +168,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(880, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 17);
+            this.label4.Size = new System.Drawing.Size(63, 23);
             this.label4.TabIndex = 7;
             this.label4.Text = "From:";
             // 
@@ -178,7 +179,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Location = new System.Drawing.Point(880, 204);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 17);
+            this.label5.Size = new System.Drawing.Size(36, 23);
             this.label5.TabIndex = 8;
             this.label5.Text = "To:";
             // 
@@ -189,7 +190,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Location = new System.Drawing.Point(880, 141);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 17);
+            this.label6.Size = new System.Drawing.Size(61, 23);
             this.label6.TabIndex = 10;
             this.label6.Text = "Type:";
             // 
@@ -198,7 +199,7 @@
             this.cboTransType.FormattingEnabled = true;
             this.cboTransType.Location = new System.Drawing.Point(964, 138);
             this.cboTransType.Name = "cboTransType";
-            this.cboTransType.Size = new System.Drawing.Size(121, 25);
+            this.cboTransType.Size = new System.Drawing.Size(121, 29);
             this.cboTransType.TabIndex = 9;
             // 
             // label7
@@ -208,7 +209,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Location = new System.Drawing.Point(880, 234);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 17);
+            this.label7.Size = new System.Drawing.Size(56, 23);
             this.label7.TabIndex = 11;
             this.label7.Text = "Amt:";
             // 
@@ -216,7 +217,7 @@
             // 
             this.txtTransAmt.Location = new System.Drawing.Point(964, 231);
             this.txtTransAmt.Name = "txtTransAmt";
-            this.txtTransAmt.Size = new System.Drawing.Size(121, 22);
+            this.txtTransAmt.Size = new System.Drawing.Size(121, 30);
             this.txtTransAmt.TabIndex = 12;
             // 
             // btnSubmitTrans
@@ -225,7 +226,7 @@
             this.btnSubmitTrans.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSubmitTrans.Location = new System.Drawing.Point(883, 367);
             this.btnSubmitTrans.Name = "btnSubmitTrans";
-            this.btnSubmitTrans.Size = new System.Drawing.Size(183, 42);
+            this.btnSubmitTrans.Size = new System.Drawing.Size(183, 57);
             this.btnSubmitTrans.TabIndex = 13;
             this.btnSubmitTrans.Text = "Submit Transaction";
             this.btnSubmitTrans.UseVisualStyleBackColor = true;
@@ -245,15 +246,28 @@
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label8.Location = new System.Drawing.Point(880, 262);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 17);
+            this.label8.Size = new System.Drawing.Size(122, 23);
             this.label8.TabIndex = 14;
             this.label8.Text = "Description:";
             // 
+            // btnDisplayAccts
+            // 
+            this.btnDisplayAccts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDisplayAccts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDisplayAccts.Location = new System.Drawing.Point(26, 462);
+            this.btnDisplayAccts.Name = "btnDisplayAccts";
+            this.btnDisplayAccts.Size = new System.Drawing.Size(216, 42);
+            this.btnDisplayAccts.TabIndex = 16;
+            this.btnDisplayAccts.Text = "Display Accts";
+            this.btnDisplayAccts.UseVisualStyleBackColor = true;
+            this.btnDisplayAccts.Click += new System.EventHandler(this.btnDisplayAccts_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 604);
+            this.Controls.Add(this.btnDisplayAccts);
             this.Controls.Add(this.txtTransDescript);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnSubmitTrans);
@@ -307,6 +321,7 @@
         private System.Windows.Forms.Button btnSubmitTrans;
         private System.Windows.Forms.TextBox txtTransDescript;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnDisplayAccts;
     }
 }
 
