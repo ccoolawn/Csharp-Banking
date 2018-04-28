@@ -10,8 +10,8 @@ namespace BankLib
     {
         private double _interest = .03;
 
-        public Savings(int accountNumber, decimal currentBalance, string bankName, double interest) : base(
-            accountNumber, currentBalance, bankName)
+        public Savings(int accountNumber, decimal currentBalance, string bankName, AcctType acctType, double interest) : base(
+            accountNumber, currentBalance, bankName, acctType)
         {
             _interest = interest;
         }
@@ -23,7 +23,7 @@ namespace BankLib
             return t;
         }
 
-        public void ApplyInterest()
+        public Transaction ApplyInterest()
         {
             decimal newBalance = CurrentBalance * Convert.ToDecimal(_interest);
             string interestDescription = String.Format("Your Savings Account has earned {0:p} of interest! We have deposited {1:c} to your account", _interest, newBalance);

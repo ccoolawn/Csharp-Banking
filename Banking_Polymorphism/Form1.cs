@@ -66,11 +66,7 @@ namespace Banking_Polymorphism
             listView1.EnsureVisible(listView1.Items.Count - 1);
         }
 
-        private AcctType RandomAccount(){
- 
-            return (AcctType)(rand.Next(0, Enum.GetNames(typeof(AcctType)).Length));
- 
-        }
+        private AcctType RandomAccount() => (AcctType)rand.Next(0, Enum.GetNames(typeof(AcctType)).Length);
 
         private void PopulateAccounts(int[] accNumbers, List<Transaction> accList)
         {
@@ -83,7 +79,7 @@ namespace Banking_Polymorphism
             AcctType at = RandomAccount();
             for (int i = 0; i < accNumbers.Length; i++)
             {
-                Account a[i] = new Account(accNumbers[i],rand.Next(10, 3000),banks[i]);
+                Account a[i] = new Account(accNumbers[i],rand.Next(10, 3000),banks[i], RandomAccount());
             }
         }
 

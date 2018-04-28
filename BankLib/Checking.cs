@@ -11,8 +11,8 @@ namespace BankLib
         private decimal _minBalance = 25;
         private decimal _fees;
 
-        public Checking(int accountNumber, decimal currentBalance, string bankName, decimal minBalance, decimal fees) : base(
-            accountNumber, currentBalance, bankName)
+        public Checking(int accountNumber, decimal currentBalance, string bankName, AcctType acctType, decimal minBalance, decimal fees) : base(
+            accountNumber, currentBalance, bankName, acctType)
         {
             _minBalance = minBalance; 
             _fees = fees;

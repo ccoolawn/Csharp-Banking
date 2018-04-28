@@ -12,13 +12,15 @@ namespace BankLib
         private int _accNumber;
         private decimal _currentBalance;
         private string _bankName;
+        private AcctType _acctType;
         private List<Transaction> _transactionsList = new List<Transaction>();
 
-        public Account(int accountNumber, decimal currentBalance, string bankName)
+        public Account(int accountNumber, decimal currentBalance, string bankName, AcctType acctType)
         {
             _accNumber = accountNumber;
             _currentBalance = currentBalance;
             _bankName = bankName;
+            _acctType = acctType;
         }
 
         public virtual int AccNumber { get => _accNumber; }
