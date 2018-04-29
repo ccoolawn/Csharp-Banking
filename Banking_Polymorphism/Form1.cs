@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankLib;
+using MetroFramework;
 
 namespace Banking_Polymorphism
 {
@@ -145,6 +146,7 @@ namespace Banking_Polymorphism
         {
             DisplayAccts(acctList);            
         }
+
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listView2.Items.Clear();
@@ -158,7 +160,14 @@ namespace Banking_Polymorphism
                 {
                     DisplayTransactions(ts);
                 }
+
+                DisplayCurrBalance(acct);
             }            
+        }
+
+        private void DisplayCurrBalance(Account acct)
+        {
+            lblcurrBalance.Text = acct.CurrentBalance.ToString("C");
         }
 
         private void cboFromAcct_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,7 +211,7 @@ namespace Banking_Polymorphism
                     acctList[indexFrom].Withdraw(amount);
                     break;
                 case (TransType.transferIn):
-                    MessageBox.Show("Transation not available for user. \n Please contact your manager.");
+                    MetroMessageBox.Show(this,"Transation not available for user. \n Please contact your manager.");
                     break;
                 case (TransType.transferOut):
                     //transfer money
@@ -213,7 +222,7 @@ namespace Banking_Polymorphism
             }
 
             listView2.Items.Clear();
-
+            Account acct = acctList[indexFrom];
             Transaction[] transactions = acctList[indexFrom].TransactionList;
             foreach (Transaction ts in transactions)
             {
@@ -221,6 +230,7 @@ namespace Banking_Polymorphism
             }
 
             DisplayAccts(acctList);
+            DisplayCurrBalance(acct);
         }        
     }
 }

@@ -31,6 +31,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,7 +52,8 @@
             this.txtTransDescript = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnDisplayAccts = new System.Windows.Forms.Button();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblcurrBalance = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -79,6 +81,11 @@
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 100;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Balance";
+            this.columnHeader7.Width = 80;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -86,7 +93,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(26, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 23);
+            this.label1.Size = new System.Drawing.Size(157, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "List of current Accounts";
             // 
@@ -99,7 +106,7 @@
             this.columnHeader6});
             this.listView2.Location = new System.Drawing.Point(258, 119);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(594, 316);
+            this.listView2.Size = new System.Drawing.Size(644, 316);
             this.listView2.TabIndex = 2;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -107,7 +114,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Transaction Type";
-            this.columnHeader3.Width = 120;
+            this.columnHeader3.Width = 110;
             // 
             // columnHeader4
             // 
@@ -118,7 +125,7 @@
             // 
             this.columnHeader5.Text = "Description";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 200;
+            this.columnHeader5.Width = 255;
             // 
             // columnHeader6
             // 
@@ -132,7 +139,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(255, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(277, 23);
+            this.label2.Size = new System.Drawing.Size(185, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "List of Account Transactions";
             // 
@@ -141,27 +148,27 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(869, 99);
+            this.label3.Location = new System.Drawing.Point(909, 99);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(359, 23);
+            this.label3.Size = new System.Drawing.Size(241, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Withdraw | Deposit | Transfer Funds";
             // 
             // cboFromAcct
             // 
             this.cboFromAcct.FormattingEnabled = true;
-            this.cboFromAcct.Location = new System.Drawing.Point(964, 170);
+            this.cboFromAcct.Location = new System.Drawing.Point(1004, 170);
             this.cboFromAcct.Name = "cboFromAcct";
-            this.cboFromAcct.Size = new System.Drawing.Size(121, 29);
+            this.cboFromAcct.Size = new System.Drawing.Size(121, 25);
             this.cboFromAcct.TabIndex = 5;
             this.cboFromAcct.SelectedIndexChanged += new System.EventHandler(this.cboFromAcct_SelectedIndexChanged);
             // 
             // cboToAcct
             // 
             this.cboToAcct.FormattingEnabled = true;
-            this.cboToAcct.Location = new System.Drawing.Point(964, 201);
+            this.cboToAcct.Location = new System.Drawing.Point(1004, 201);
             this.cboToAcct.Name = "cboToAcct";
-            this.cboToAcct.Size = new System.Drawing.Size(121, 29);
+            this.cboToAcct.Size = new System.Drawing.Size(121, 25);
             this.cboToAcct.TabIndex = 6;
             // 
             // label4
@@ -169,9 +176,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(880, 173);
+            this.label4.Location = new System.Drawing.Point(920, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 23);
+            this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "From:";
             // 
@@ -180,9 +187,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(880, 204);
+            this.label5.Location = new System.Drawing.Point(920, 204);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 23);
+            this.label5.Size = new System.Drawing.Size(26, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "To:";
             // 
@@ -191,18 +198,18 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(880, 141);
+            this.label6.Location = new System.Drawing.Point(920, 141);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 23);
+            this.label6.Size = new System.Drawing.Size(40, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "Type:";
             // 
             // cboTransType
             // 
             this.cboTransType.FormattingEnabled = true;
-            this.cboTransType.Location = new System.Drawing.Point(964, 138);
+            this.cboTransType.Location = new System.Drawing.Point(1004, 138);
             this.cboTransType.Name = "cboTransType";
-            this.cboTransType.Size = new System.Drawing.Size(121, 29);
+            this.cboTransType.Size = new System.Drawing.Size(121, 25);
             this.cboTransType.TabIndex = 9;
             // 
             // label7
@@ -210,24 +217,24 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(880, 234);
+            this.label7.Location = new System.Drawing.Point(920, 234);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 23);
+            this.label7.Size = new System.Drawing.Size(39, 17);
             this.label7.TabIndex = 11;
             this.label7.Text = "Amt:";
             // 
             // txtTransAmt
             // 
-            this.txtTransAmt.Location = new System.Drawing.Point(964, 231);
+            this.txtTransAmt.Location = new System.Drawing.Point(1004, 231);
             this.txtTransAmt.Name = "txtTransAmt";
-            this.txtTransAmt.Size = new System.Drawing.Size(121, 30);
+            this.txtTransAmt.Size = new System.Drawing.Size(121, 22);
             this.txtTransAmt.TabIndex = 12;
             // 
             // btnSubmitTrans
             // 
             this.btnSubmitTrans.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmitTrans.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSubmitTrans.Location = new System.Drawing.Point(883, 367);
+            this.btnSubmitTrans.Location = new System.Drawing.Point(923, 367);
             this.btnSubmitTrans.Name = "btnSubmitTrans";
             this.btnSubmitTrans.Size = new System.Drawing.Size(183, 57);
             this.btnSubmitTrans.TabIndex = 13;
@@ -237,7 +244,7 @@
             // 
             // txtTransDescript
             // 
-            this.txtTransDescript.Location = new System.Drawing.Point(964, 259);
+            this.txtTransDescript.Location = new System.Drawing.Point(1004, 259);
             this.txtTransDescript.Multiline = true;
             this.txtTransDescript.Name = "txtTransDescript";
             this.txtTransDescript.Size = new System.Drawing.Size(121, 83);
@@ -248,9 +255,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(880, 262);
+            this.label8.Location = new System.Drawing.Point(920, 262);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(122, 23);
+            this.label8.Size = new System.Drawing.Size(84, 17);
             this.label8.TabIndex = 14;
             this.label8.Text = "Description:";
             // 
@@ -266,16 +273,33 @@
             this.btnDisplayAccts.UseVisualStyleBackColor = true;
             this.btnDisplayAccts.Click += new System.EventHandler(this.btnDisplayAccts_Click);
             // 
-            // columnHeader7
+            // label9
             // 
-            this.columnHeader7.Text = "Balance";
-            this.columnHeader7.Width = 80;
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label9.Location = new System.Drawing.Point(597, 442);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(104, 17);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Current Balance";
+            // 
+            // lblcurrBalance
+            // 
+            this.lblcurrBalance.AutoSize = true;
+            this.lblcurrBalance.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblcurrBalance.Location = new System.Drawing.Point(722, 442);
+            this.lblcurrBalance.Name = "lblcurrBalance";
+            this.lblcurrBalance.Size = new System.Drawing.Size(80, 17);
+            this.lblcurrBalance.TabIndex = 18;
+            this.lblcurrBalance.Text = "currBalance";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 604);
+            this.ClientSize = new System.Drawing.Size(1159, 604);
+            this.Controls.Add(this.lblcurrBalance);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnDisplayAccts);
             this.Controls.Add(this.txtTransDescript);
             this.Controls.Add(this.label8);
@@ -332,6 +356,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnDisplayAccts;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblcurrBalance;
     }
 }
 
