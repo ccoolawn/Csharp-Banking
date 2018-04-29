@@ -79,7 +79,7 @@ namespace Banking_Polymorphism
             AcctType at = RandomAccount();
             for (int i = 0; i < accNumbers.Length; i++)
             {
-                Account a[i] = new Account(accNumbers[i],rand.Next(10, 3000),banks[i], RandomAccount());
+                Checking a[i] = new Checking(accNumbers[i],rand.Next(10, 3000),banks[i], RandomAccount());
             }
         }
 
