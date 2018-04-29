@@ -56,11 +56,11 @@ namespace Banking_Polymorphism
             {
                 if (RandomAccount() == AcctType.checking)
                 {
-                    a[i] = new Checking(acctNumbers[i], rand.Next(10, 3000), banks[i], 25, 25);
+                    a.Add(new Checking(acctNumbers[i], rand.Next(10, 3000), banks[i], 25, 25));
                 }
                 else
                 {
-                    a[i] = new Savings(acctNumbers[i], rand.Next(10, 3000), banks[i], 0.03d);
+                    a.Add(new Savings(acctNumbers[i], rand.Next(10, 3000), banks[i], 0.03d));
                 }
             }
             PopulateTransactions(a);
@@ -96,7 +96,7 @@ namespace Banking_Polymorphism
             ListViewItem lvi = new ListViewItem();
             foreach (Account acct in acctList)
             {
-                string[] items = { acct.AcctNumber.ToString(), acct.GetType().ToString()};
+                string[] items = { acct.AcctNumber.ToString(), acct.GetType().Name.ToString()};
                 lvi = new ListViewItem(items);
                 //add the row to the listview
                 listView1.Items.Add(lvi);
