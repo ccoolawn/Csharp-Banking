@@ -10,10 +10,10 @@ namespace BankLib
     {
         private double _interest;
 
-        public Savings(int accountNumber, decimal currentBalance, string bankName, /*AcctType acctType,*/ double interest) : base(
-            accountNumber, currentBalance, bankName/*, acctType*/)
+        public Savings(int accountNumber, decimal currentBalance, string bankName) : base(
+            accountNumber, currentBalance, bankName)
         {
-            _interest = interest;
+            _interest = .03d;
         }
 
         public override void Withdraw(decimal amount)
@@ -29,6 +29,7 @@ namespace BankLib
             decimal newBalance = CurrentBalance * Convert.ToDecimal(_interest);
             string interestDescription = String.Format("Your Savings Account has earned {0:p} of interest! We have deposited {1:c} to your account", _interest, newBalance);
             Transaction t = new Transaction(newBalance, TransType.deposit, DateTime.Now, interestDescription);
+            UpdateBalance(newBalance);
             //add transaction to _transactionList
             AddTransaction(t);
         }

@@ -68,11 +68,11 @@ namespace Banking_Polymorphism
             {
                 if (RandomAccount() == AcctType.checking)
                 {
-                    a.Add(new Checking(acctNumbers[i], rand.Next(10, 3000), banks[i], 25, 25));
+                    a.Add(new Checking(acctNumbers[i], rand.Next(10, 3000), banks[i]));
                 }
                 else
                 {
-                    a.Add(new Savings(acctNumbers[i], rand.Next(10, 3000), banks[i], 0.03d));
+                    a.Add(new Savings(acctNumbers[i], rand.Next(10, 3000), banks[i]));
                 }
             }
             PopulateTransactions(a);
@@ -119,15 +119,11 @@ namespace Banking_Polymorphism
             ListViewItem lvi = new ListViewItem();
             foreach (Account acct in acctList)
             {
-                string[] items = { acct.AcctNumber.ToString(), acct.GetType().Name.ToString()};
+                string[] items = { acct.AcctNumber.ToString(), acct.GetType().Name.ToString(), acct.CurrentBalance.ToString("c")};
                 lvi = new ListViewItem(items);
                 //add the row to the listview
                 listView1.Items.Add(lvi);
             }           
-            //cause the listview1 to scroll to the bottom
-            //by making the last item visible
-            //listView1.EnsureVisible(listView1.Items.Count - 1);
-            //listView1.EnsureVisible(listView1.Items.Count - 1);
         }
 
         private void DisplayTransactions(Transaction acctTrans)
@@ -137,23 +133,17 @@ namespace Banking_Polymorphism
                 acctTrans.Type.ToString(),
                 acctTrans.Date.ToString(),
                 acctTrans.Description,
-                acctTrans.Amount.ToString()
+                acctTrans.Amount.ToString("c")
             };
             ListViewItem lvi = new ListViewItem(items);
             //add the row to the listview
             listView2.Items.Add(lvi);
-            //cause the listview1 to scroll to the bottom
-            //by making the last item visible
-            listView1.EnsureVisible(listView1.Items.Count - 1);
         }
 
         //**************************EVENTS***********************************
         private void btnDisplayAccts_Click(object sender, EventArgs e)
         {
-
-            DisplayAccts(acctList);
-
-            
+            DisplayAccts(acctList);            
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -168,14 +158,13 @@ namespace Banking_Polymorphism
                 {
                     DisplayTransactions(ts);
                 }
-            }
-
-            
+            }            
         }
 
         private void cboFromAcct_SelectedIndexChanged(object sender, EventArgs e)
         {
             cboToAcct.Enabled = true;
+            cboToAcct.Items.Clear();
 
             foreach (Account obj in acctList)
             {
@@ -213,14 +202,25 @@ namespace Banking_Polymorphism
                     acctList[indexFrom].Withdraw(amount);
                     break;
                 case (TransType.transferIn):
+                    MessageBox.Show("Transation not available for user. \n Please contact your manager.");
+                    break;
+                case (TransType.transferOut):
                     //transfer money
                     acctList[indexFrom].TransferTo(acctList[indexTo], amount);
                     break;
-                case (TransType.transferOut):
-                    break;
                 default:
                     break;
-            }          
+            }
+
+            listView2.Items.Clear();
+
+            Transaction[] transactions = acctList[indexFrom].TransactionList;
+            foreach (Transaction ts in transactions)
+            {
+                DisplayTransactions(ts);
+            }
+
+            DisplayAccts(acctList);
         }        
     }
 }

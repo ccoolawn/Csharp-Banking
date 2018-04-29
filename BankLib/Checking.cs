@@ -11,11 +11,11 @@ namespace BankLib
         private decimal _minBalance;
         private decimal _fees;
 
-        public Checking(int accountNumber, decimal currentBalance, string bankName, /*AcctType acctType,*/ decimal minBalance, decimal fees) : base(
-            accountNumber, currentBalance, bankName/*, acctType*/)
+        public Checking(int accountNumber, decimal currentBalance, string bankName) : base(
+            accountNumber, currentBalance, bankName)
         {
-            _minBalance = minBalance; 
-            _fees = fees;
+            _minBalance = 25; 
+            _fees = 25;
         }
 
         public override void Withdraw(decimal amount)
@@ -25,12 +25,10 @@ namespace BankLib
 
             if (amount <= _minBalance || CurrentBalance - amount < _minBalance)
             {
-                _fees = 25;
                 newBalance = CurrentBalance - _fees;
 
                 string withrawDescription = String.Format("Your Withdrawal of {0:c} was unsuccessful! You have been charged a fee of {1:c}", amount, _fees);
                 t = new Transaction(newBalance, TransType.withdrawal, DateTime.Now, withrawDescription);
-                
             }
             else
             {
@@ -38,6 +36,7 @@ namespace BankLib
                 string withrawDescription = String.Format("Your Withdrawal of {0:c} is complete!", amount);
                 t = new Transaction(newBalance, TransType.withdrawal, DateTime.Now, withrawDescription);
             }
+            UpdateBalance(newBalance);
             //add transaction to _transactionList
             AddTransaction(t);
         }

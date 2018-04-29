@@ -12,15 +12,13 @@ namespace BankLib
         private int _acctNumber;
         private decimal _currentBalance;
         private string _bankName;
-        //private AcctType _acctType;
         private List<Transaction> _transactionsList = new List<Transaction>();
 
-        public Account(int accountNumber, decimal currentBalance, string bankName/*, AcctType acctType*/)
+        public Account(int accountNumber, decimal currentBalance, string bankName)
         {
             _acctNumber = accountNumber;
             _currentBalance = currentBalance;
             _bankName = bankName;
-            //_acctType = acctType;
         }
 
         public virtual int AcctNumber { get => _acctNumber; }
@@ -41,14 +39,21 @@ namespace BankLib
         public virtual void TransferTo(Account toOther, decimal amount)
         {
             string transDescription = String.Format("Your transfer of {0:c} to Acct Num: {1} is complete!", amount, toOther.AcctNumber);
-            Transaction t = new Transaction(amount, TransType.transferOut, DateTime.Now, transDescription);
+            Transaction tOut = new Transaction(amount, TransType.transferOut, DateTime.Now, transDescription);
+            Transaction tIn = new Transaction(amount, TransType.transferIn, DateTime.Now, transDescription);
             _currentBalance -= amount;
             toOther.Deposit(amount);
-            _transactionsList.Add(t);
+            _transactionsList.Add(tOut);
+            toOther.AddTransaction(tIn);
         }
         public virtual void AddTransaction(Transaction t)
         {
             _transactionsList.Add(t);
+        }
+
+        public virtual void UpdateBalance(decimal newBalance)
+        {
+            _currentBalance = newBalance;
         }
     }
 }

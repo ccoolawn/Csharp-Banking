@@ -51,13 +51,15 @@
             this.txtTransDescript = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnDisplayAccts = new System.Windows.Forms.Button();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader7});
             this.listView1.Location = new System.Drawing.Point(27, 116);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(215, 319);
@@ -264,6 +266,11 @@
             this.btnDisplayAccts.UseVisualStyleBackColor = true;
             this.btnDisplayAccts.Click += new System.EventHandler(this.btnDisplayAccts_Click);
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Balance";
+            this.columnHeader7.Width = 80;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -324,6 +331,7 @@
         private System.Windows.Forms.TextBox txtTransDescript;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnDisplayAccts;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }
 
