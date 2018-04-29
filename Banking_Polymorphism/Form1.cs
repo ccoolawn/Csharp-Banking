@@ -157,7 +157,20 @@ namespace Banking_Polymorphism
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listView2.Items.Clear();
 
+            if (listView1.SelectedItems.Count > 0)
+            {
+                int idx = listView1.FocusedItem.Index;
+                Account acct = acctList[idx];
+                Transaction[] transactions = acct.TransactionList;
+                foreach(Transaction ts in acct.TransactionList)
+                {
+                    DisplayTransactions(ts);
+                }
+            }
+
+            
         }
 
         private void cboFromAcct_SelectedIndexChanged(object sender, EventArgs e)
