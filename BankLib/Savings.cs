@@ -18,8 +18,22 @@ namespace BankLib
 
         public override void Withdraw(decimal amount)
         {
-            string withrawDescription = String.Format("Your Withdrawal of {0:c} is complete!", amount);
-            Transaction t = new Transaction(amount, TransType.withdrawal, DateTime.Now, withrawDescription);
+            Transaction t;
+            decimal newBalance;
+
+            if (CurrentBalance - amount < 0)
+            {
+                newBalance = CurrentBalance;
+                string withrawDescription = String.Format("Your Withdrawal of {0:c} was unsuccessful! Your balance is {1:c}", amount, CurrentBalance);
+                t = new Transaction(CurrentBalance, TransType.withdrawal, DateTime.Now, withrawDescription);
+            }
+            else
+            {
+                newBalance = CurrentBalance - amount;
+                string withrawDescription = String.Format("Your Withdrawal of {0:c} is complete!", amount);
+                t = new Transaction(newBalance, TransType.withdrawal, DateTime.Now, withrawDescription);
+            }
+            UpdateBalance(newBalance);
             //add transaction to _transactionList
             AddTransaction(t);
         }
