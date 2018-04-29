@@ -13,7 +13,11 @@ namespace Banking_Polymorphism
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        //**************************GLOBAL***********************************
         Random rand = new Random();
+        List<Account> acctList = new List<Account>();
+
+        //**************************FORM***********************************
         public Form1()
         {
             InitializeComponent();
@@ -22,31 +26,85 @@ namespace Banking_Polymorphism
         private void Form1_Load(object sender, EventArgs e)
         {
             //minimum 10 accounts
-            int[] accNumbers = GenerateAccNumber(10);
-        }
-        private int[] GenerateAccNumber(int size)
-        {
-            int[] accNumbers = new int[size];
-            for (int i = 0; i < size; i++)
-            {
-                accNumbers[i] = rand.Next(00000, 1000000);
-            }
-            return accNumbers;
+            int[] acctNumbers = GenerateAccNumber(10);
+            //populates acctList
+            PopulateAccounts(acctNumbers, acctList);
         }
 
-        private void DisplayAccts(Account acct)
+        //**************************METHODS***********************************
+        private int[] GenerateAccNumber(int size)
         {
-            string[] items =
+            int[] acctNumbers = new int[size];
+            for (int i = 0; i < size; i++)
             {
-                acct.AccNumber.ToString(),
-                acct.GetType().ToString()
-            };
-            ListViewItem lvi = new ListViewItem(items);
-            //add the row to the listview
-            listView1.Items.Add(lvi);
+                acctNumbers[i] = rand.Next(00000, 1000000);
+            }
+            return acctNumbers;
+        }
+
+        private AcctType RandomAccount() => (AcctType)rand.Next(0, Enum.GetNames(typeof(AcctType)).Length);
+
+        private void PopulateAccounts(int[] acctNumbers, List<Account> a)
+        {
+            string[] banks =
+            {"Republic Savings","AMCORE Bank Carpentersville","Broadway Bank",
+             "First Choice Bank","South Carolina Federal Savings Bank",
+             "Valley Bank Richland Center","Trinity National Bank",
+             "Glasgow Savings Bank","Gunnison Valley Bank","Little Falls Bank"};
+            AcctType at = RandomAccount();
+            for (int i = 0; i < acctNumbers.Length; i++)
+            {
+                if (RandomAccount() == AcctType.checking)
+                {
+                    a[i] = new Checking(acctNumbers[i], rand.Next(10, 3000), banks[i], 25, 25);
+                }
+                else
+                {
+                    a[i] = new Savings(acctNumbers[i], rand.Next(10, 3000), banks[i], 0.03d);
+                }
+            }
+            PopulateTransactions(a);
+        }
+        private void PopulateTransactions(List<Account> a)
+        {
+            for (int i = 0; i < a.Count; i++)
+            {
+                //deposits and withdraws
+                for (int j = 0; j < 3; j++)
+                {
+                    a[i].Deposit(rand.Next(40, 1500));
+                    a[i].Withdraw(rand.Next(40, 1500));
+                }
+                //transfers
+                for (int k = 0; k < 2; k++)
+                {
+                    int index = rand.Next(0, a.Count);
+                    if (a[index].AcctNumber != a[i].AcctNumber)
+                    {
+                        a[i].TransferTo(a[index], rand.Next(40, 1500));
+                    }
+                    else
+                        k--;
+                }
+            }
+        }
+
+        private void DisplayAccts(List<Account> acctList)
+        {
+            listView1.Items.Clear();
+
+            ListViewItem lvi = new ListViewItem();
+            foreach (Account acct in acctList)
+            {
+                string[] items = { acct.AcctNumber.ToString(), acct.GetType().ToString()};
+                lvi = new ListViewItem(items);
+                //add the row to the listview
+                listView1.Items.Add(lvi);
+            }           
             //cause the listview1 to scroll to the bottom
             //by making the last item visible
-            listView1.EnsureVisible(listView1.Items.Count - 1);
+            //listView1.EnsureVisible(listView1.Items.Count - 1);
+            //listView1.EnsureVisible(listView1.Items.Count - 1);
         }
 
         private void DisplayTransactions(Transaction acctTrans)
@@ -66,26 +124,17 @@ namespace Banking_Polymorphism
             listView1.EnsureVisible(listView1.Items.Count - 1);
         }
 
-        private AcctType RandomAccount() => (AcctType)rand.Next(0, Enum.GetNames(typeof(AcctType)).Length);
-
-        private void PopulateAccounts(int[] accNumbers, List<Transaction> accList)
+        //**************************EVENTS***********************************
+        private void btnDisplayAccts_Click(object sender, EventArgs e)
         {
-            string[] banks =
-            {"Republic Savings","AMCORE Bank Carpentersville","Broadway Bank",
-             "First Choice Bank","South Carolina Federal Savings Bank",
-             "Valley Bank Richland Center","Trinity National Bank",
-             "Glasgow Savings Bank","Gunnison Valley Bank","Little Falls Bank"};
 
-            AcctType at = RandomAccount();
-            for (int i = 0; i < accNumbers.Length; i++)
-            {
-                Checking a[i] = new Checking(accNumbers[i],rand.Next(10, 3000),banks[i], RandomAccount());
-            }
+            DisplayAccts(acctList);
+
+            
         }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
+        }        
     }
 }
