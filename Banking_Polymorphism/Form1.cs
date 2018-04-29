@@ -127,7 +127,10 @@ namespace Banking_Polymorphism
         //**************************EVENTS***********************************
         private void btnDisplayAccts_Click(object sender, EventArgs e)
         {
+
             DisplayAccts(acctList);
+
+            
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
