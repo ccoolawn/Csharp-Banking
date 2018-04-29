@@ -152,6 +152,7 @@
             this.cboFromAcct.Name = "cboFromAcct";
             this.cboFromAcct.Size = new System.Drawing.Size(121, 29);
             this.cboFromAcct.TabIndex = 5;
+            this.cboFromAcct.SelectedIndexChanged += new System.EventHandler(this.cboFromAcct_SelectedIndexChanged);
             // 
             // cboToAcct
             // 
@@ -230,6 +231,7 @@
             this.btnSubmitTrans.TabIndex = 13;
             this.btnSubmitTrans.Text = "Submit Transaction";
             this.btnSubmitTrans.UseVisualStyleBackColor = true;
+            this.btnSubmitTrans.Click += new System.EventHandler(this.btnSubmitTrans_Click);
             // 
             // txtTransDescript
             // 

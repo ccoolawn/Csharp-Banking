@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Ana Carolina de Souza Mendes
+ * Cornell Coulon
+ * 
+ * May 01, 2018
+ * 
+ * Inheritance Lab Assignment
+ * */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +37,10 @@ namespace Banking_Polymorphism
             int[] acctNumbers = GenerateAccNumber(10);
             //populates acctList
             PopulateAccounts(acctNumbers, acctList);
+            //populate comboboxes
+            PopulateComboboxes(acctList);
+            //block other combobox
+            cboToAcct.Enabled = false;
         }
 
         //**************************METHODS***********************************
@@ -89,6 +101,17 @@ namespace Banking_Polymorphism
             }
         }
 
+        private void PopulateComboboxes(List<Account> acctList)
+        {
+            //populate Type combobox
+            cboTransType.DataSource = Enum.GetValues(typeof(TransType));
+
+            foreach (Account obj in acctList)
+            {
+                cboFromAcct.Items.Add(obj.AcctNumber);
+            }
+            cboFromAcct.Sorted = true;
+        }
         private void DisplayAccts(List<Account> acctList)
         {
             listView1.Items.Clear();
@@ -135,6 +158,56 @@ namespace Banking_Polymorphism
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboFromAcct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboToAcct.Enabled = true;
+
+            foreach (Account obj in acctList)
+            {
+                if (Convert.ToInt32(cboFromAcct.SelectedItem) != obj.AcctNumber)
+                    cboToAcct.Items.Add(obj.AcctNumber);
+            }
+            cboToAcct.Sorted = true;
+        }
+        private void btnSubmitTrans_Click(object sender, EventArgs e)
+        {
+            //get values from comboboxes and txtboxes
+            TransType tt = (TransType)Enum.Parse(typeof(TransType), cboTransType.SelectedItem.ToString());
+            int fromAcct = Convert.ToInt32(cboFromAcct.SelectedItem);
+            int toAcct = Convert.ToInt32(cboToAcct.SelectedItem);
+            decimal amount = Convert.ToDecimal(txtTransAmt.Text);
+            string description = txtTransDescript.Text;
+            //get Accounts
+            int indexFrom = 0;
+            int indexTo = 0;
+            for (int i = 0; i < acctList.Count; i++)
+            {
+                if (acctList[i].AcctNumber == fromAcct)
+                    indexFrom = i;
+                if (acctList[i].AcctNumber == toAcct)
+                    indexTo = i;
+            }
+            
+            switch (tt)
+            {
+                case (TransType.deposit):
+                    //deposit money
+                    acctList[indexFrom].Deposit(amount);
+                    break;
+                case (TransType.withdrawal):
+                    acctList[indexFrom].Withdraw(amount);
+                    break;
+                case (TransType.transferIn):
+                    //transfer money
+                    acctList[indexFrom].TransferTo(acctList[indexTo], amount);
+                    break;
+                case (TransType.transferOut):
+                    break;
+                default:
+                    break;
+            }          
         }        
     }
 }
