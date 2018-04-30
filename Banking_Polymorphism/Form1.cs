@@ -42,6 +42,8 @@ namespace Banking_Polymorphism
             PopulateComboboxes(acctList);
             //block other combobox
             cboToAcct.Enabled = false;
+            //set lblcurrBalance to empty string
+            lblcurrBalance.Text = String.Empty;
         }
 
         //**************************METHODS***********************************
@@ -189,49 +191,64 @@ namespace Banking_Polymorphism
             TransType tt = (TransType)Enum.Parse(typeof(TransType), cboTransType.SelectedItem.ToString());
             int fromAcct = Convert.ToInt32(cboFromAcct.SelectedItem);
             int toAcct = Convert.ToInt32(cboToAcct.SelectedItem);
-            decimal amount = Convert.ToDecimal(txtTransAmt.Text);
-            string description = txtTransDescript.Text;
-            //get Accounts
-            int indexFrom = 0;
-            int indexTo = 0;
-            for (int i = 0; i < acctList.Count; i++)
+            decimal amount;
+            if(!cboFromAcct.Items.Contains(fromAcct))
+                MetroFramework.MetroMessageBox.Show(this, "Enter a valid FROM account!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            else
             {
-                if (acctList[i].AcctNumber == fromAcct)
-                    indexFrom = i;
-                if (acctList[i].AcctNumber == toAcct)
-                    indexTo = i;
-            }
-            
-            switch (tt)
-            {
-                case (TransType.deposit):
-                    //deposit money
-                    acctList[indexFrom].Deposit(amount);
-                    break;
-                case (TransType.withdrawal):
-                    acctList[indexFrom].Withdraw(amount);
-                    break;
-                case (TransType.transferIn):
-                    MetroMessageBox.Show(this,"Transation not available for user. \n Please contact your manager.");
-                    break;
-                case (TransType.transferOut):
-                    //transfer money
-                    acctList[indexFrom].TransferTo(acctList[indexTo], amount);
-                    break;
-                default:
-                    break;
-            }
+                if(tt == TransType.transferOut)
+                {
+                    if (!cboToAcct.Items.Contains(toAcct))
+                        MetroFramework.MetroMessageBox.Show(this, "Enter a valid TO account!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }                
 
-            listView2.Items.Clear();
-            Account acct = acctList[indexFrom];
-            Transaction[] transactions = acctList[indexFrom].TransactionList;
-            foreach (Transaction ts in transactions)
-            {
-                DisplayTransactions(ts);
-            }
+                if (!decimal.TryParse(txtTransAmt.Text, out amount))
+                    MetroFramework.MetroMessageBox.Show(this, "Enter a valid amount!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                else
+                {
+                    //get Accounts
+                    int indexFrom = 0;
+                    int indexTo = 0;
+                    for (int i = 0; i < acctList.Count; i++)
+                    {
+                        if (acctList[i].AcctNumber == fromAcct)
+                            indexFrom = i;
+                        if (acctList[i].AcctNumber == toAcct)
+                            indexTo = i;
+                    }
 
-            DisplayAccts(acctList);
-            DisplayCurrBalance(acct);
+                    switch (tt)
+                    {
+                        case (TransType.deposit):
+                            //deposit money
+                            acctList[indexFrom].Deposit(amount);
+                            break;
+                        case (TransType.withdrawal):
+                            acctList[indexFrom].Withdraw(amount);
+                            break;
+                        case (TransType.transferIn):
+                            MetroMessageBox.Show(this, "Transation not available for user. \n Please contact your manager.");
+                            break;
+                        case (TransType.transferOut):
+                            //transfer money
+                            acctList[indexFrom].TransferTo(acctList[indexTo], amount);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    listView2.Items.Clear();
+                    Account acct = acctList[indexFrom];
+                    Transaction[] transactions = acctList[indexFrom].TransactionList;
+                    foreach (Transaction ts in transactions)
+                    {
+                        DisplayTransactions(ts);
+                    }
+
+                    DisplayAccts(acctList);
+                    DisplayCurrBalance(acct);
+                }
+            }                   
         }        
     }
 }
