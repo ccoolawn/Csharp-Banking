@@ -38,13 +38,17 @@ namespace BankLib
         
         public virtual void TransferTo(Account toOther, decimal amount)
         {
-            string transDescription = String.Format("Your transfer of {0:c} to Acct Num: {1} is complete!", amount, toOther.AcctNumber);
-            Transaction tOut = new Transaction(amount, TransType.transferOut, DateTime.Now, transDescription);
-            Transaction tIn = new Transaction(amount, TransType.transferIn, DateTime.Now, transDescription);
-            _currentBalance -= amount;
-            toOther.Deposit(amount);
-            _transactionsList.Add(tOut);
-            toOther.AddTransaction(tIn);
+            if (amount < _currentBalance)
+            {
+                string transDescriptionOut = String.Format("Your transfer of {0:c} to Acct Num: {1} is complete!", amount, toOther.AcctNumber);
+                string transDescriptionIn = String.Format("An amount of {0:c} was transfered from Acct Num: {1}", amount, _acctNumber);
+                Transaction tOut = new Transaction(amount, TransType.transferOut, DateTime.Now, transDescriptionOut);
+                Transaction tIn = new Transaction(amount, TransType.transferIn, DateTime.Now, transDescriptionIn);
+                _currentBalance -= amount;
+                toOther.UpdateBalance(toOther.CurrentBalance + amount);
+                _transactionsList.Add(tOut);
+                toOther.AddTransaction(tIn);
+            }
         }
         public virtual void AddTransaction(Transaction t)
         {
